@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-DS Node is a ROS2 node package designed to receive data from DS devices and convert it into ROS2 standard message formats for publishing on ROS2 topics. The node supports parsing and publishing various data types, including position, velocity, acceleration, attitude, and raw sensor data.
+A "DS Device" refers to a line of high-precision navigation sensors, such as those manufactured by PolyExplore Inc. These devices are typically combined GNSS (Global Navigation Satellite System) and INS (Inertial Navigation System) units that provide accurate position, velocity, attitude (orientation), and raw sensor data.
+
+This "DS Node" is a ROS2 package that acts as a driver for this hardware. It connects to the device via Ethernet, parses its proprietary message formats (like Kalman, GnssHmr, RawIMU, etc.), and converts them into ROS2 standard message formats (like sensor_msgs::msg::NavSatFix and sensor_msgs::msg::Imu) for publishing on ROS2 topics.
 
 ## Features
 
@@ -118,10 +120,6 @@ The node provides various coordinate system transformations and data format conv
 ## Contribution Guidelines
 
 Issue reports and feature requests are welcome. For code contributions, please submit pull requests.
-
-## License
-
-TODO: License declaration
 
 ---
 
