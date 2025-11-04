@@ -1,0 +1,13 @@
+/ds_ns:
+  ds_node_talker:
+    ros__parameters:
+      use_sim_time: False
+      eth_enable: True
+      eth_server: "192.168.28.29"
+      eth_port: "2829"
+      ds_output: 0xFF
+  ds_node_rtcm_forwarder:
+    ros__parameters:
+      use_sim_time: False
+      use_tcp: True
+      rtcm_data_topic: "rtcm"
