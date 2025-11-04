@@ -244,6 +244,5 @@ The node provides various coordinate system transformations and data format conv
 
 Issue reports and feature requests are welcome. For code contributions, please submit pull requests.
 
-## License
-
-TODO: License declaration
+## Tests
+TO DO
