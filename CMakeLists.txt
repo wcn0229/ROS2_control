@@ -80,6 +80,12 @@ add_executable(ds_node_listener
 add_executable(ds_node_rtcm_forwarder
   src/ds_node_rtcm_forwarder.cpp
 )
+add_executable(ds_binary_tcp 
+  src/ds_binary_tcp.cpp
+)
+add_executable(ds_binary_udp 
+  src/ds_binary_udp.cpp
+)
 ament_target_dependencies(${PROJECT_NAME}_talker 
   ${dependencies}
 )
@@ -89,12 +95,20 @@ ament_target_dependencies(ds_node_listener
 ament_target_dependencies(ds_node_rtcm_forwarder
   ${dependencies}
 )
+ament_target_dependencies(ds_binary_tcp 
+  ${dependencies}
+)
+ament_target_dependencies(ds_binary_udp 
+  ${dependencies}
+)
 #### installing
 # Install executables
 install(TARGETS
   ${PROJECT_NAME}_talker
   ds_node_listener
   ds_node_rtcm_forwarder
+  ds_binary_tcp
+  ds_binary_udp
   DESTINATION lib/${PROJECT_NAME}
 )
 rosidl_target_interfaces(${PROJECT_NAME}_talker
@@ -102,6 +116,10 @@ rosidl_target_interfaces(${PROJECT_NAME}_talker
 rosidl_target_interfaces(ds_node_listener
   ${PROJECT_NAME} "rosidl_typesupport_cpp")
 rosidl_target_interfaces(ds_node_rtcm_forwarder
+  ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_target_interfaces(ds_binary_udp
+  ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_target_interfaces(ds_binary_tcp
   ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 # Install launch files.
