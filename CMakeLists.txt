@@ -135,6 +135,13 @@ install(DIRECTORY
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
+  find_package(ament_cmake_gtest REQUIRED)
+  find_package(rclcpp REQUIRED)
+  find_package(std_msgs REQUIRED)
+  find_package(geometry_msgs REQUIRED)
+  find_package(sensor_msgs REQUIRED)
+  find_package(nav_msgs REQUIRED)
+  
   # the following line skips the linter which checks for copyrights
   # uncomment the line when a copyright and license is not present in all source files
   #set(ament_cmake_copyright_FOUND TRUE)
@@ -142,6 +149,46 @@ if(BUILD_TESTING)
   # uncomment the line when this package is not in a git repo
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
+  
+  # Unit tests for conversion functions
+  ament_add_gtest(test_ds_convert
+    test/test_ds_convert.cpp
+    src/ds_convert.cpp
+  )
+  ament_target_dependencies(test_ds_convert
+    geometry_msgs
+    sensor_msgs
+    nav_msgs
+    ${PROJECT_NAME}
+  )
+  rosidl_target_interfaces(test_ds_convert
+    ${PROJECT_NAME} "rosidl_typesupport_cpp")
+  
+  # Unit tests for NMEA functions
+  ament_add_gtest(test_ds_nmea
+    test/test_ds_nmea.cpp
+    src/ds_nmea.cpp
+  )
+  ament_target_dependencies(test_ds_nmea
+    ${PROJECT_NAME}
+  )
+  rosidl_target_interfaces(test_ds_nmea
+    ${PROJECT_NAME} "rosidl_typesupport_cpp")
+  
+  # Integration tests for ROS2 nodes
+  ament_add_gtest(test_integration
+    test/test_integration.cpp
+  )
+  ament_target_dependencies(test_integration
+    rclcpp
+    geometry_msgs
+    sensor_msgs
+    nav_msgs
+    ${PROJECT_NAME}
+  )
+  rosidl_target_interfaces(test_integration
+    ${PROJECT_NAME} "rosidl_typesupport_cpp")
+  
 endif()
 
 ament_package()
